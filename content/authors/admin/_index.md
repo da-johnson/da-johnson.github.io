@@ -1,6 +1,6 @@
 ---
 # Display name
-title: 
+title: Alex Johnson
 
 # Name pronunciation (optional)
 name_pronunciation: Alex
