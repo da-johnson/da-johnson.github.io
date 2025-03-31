@@ -10,15 +10,15 @@ main:
   - name: CV
     url: resume.pdf
     weight: 11
-  - name: Papers
-    url: /#papers
-    weight: 12
-  - name: Talks
-    url: /#talks
-    weight: 13
-  - name: News
-    url: /#news
-    weight: 14
+  # - name: Papers
+  #   url: /#papers
+  #   weight: 12
+  # - name: Talks
+  #   url: /#talks
+  #   weight: 13
+  # - name: News
+  #   url: /#news
+  #   weight: 14
   - name: Experience
     url: experience/
     weight: 15
@@ -26,5 +26,5 @@ main:
     url: projects/
     weight: 16
   - name: Teaching
-    url: teaching/
+    url: https://magazine.caltech.edu/post/dive-diversification-through-veteran-education
     weight: 17
