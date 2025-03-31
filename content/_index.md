@@ -32,7 +32,7 @@ sections:
           parallax: false
   - block: markdown
     content:
-      title: '📚 My Research'
+      title: 'My Research'
       subtitle: ''
       text: |-
        I am a research scientist working at the intersection of synthetic biology and conservation. My work focuses on designing and implementing protein-based molecular tools to probe and better understand natural ecosystems. I'm passionate about translating cutting-edge biotechnology into practical solutions for real-world environmental challenges, with the ultimate goal of enhancing conservation efforts and sustainability practices.
