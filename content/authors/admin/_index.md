@@ -11,7 +11,7 @@ last_name: Johnson
 
 # Status emoji
 status:
-  icon: ☕️
+  icon:
 
 # Is this the primary user of the site?
 superuser: true
@@ -62,6 +62,12 @@ education:
       - Engineered protein expression and purification
       - X-ray crystallography
       - Collaboration across multiple labs
+  - area: "AA Biology"
+    institution: "Skagit Valley College"
+    date_start: "2018-09-01"
+    date_end: "2019-06-01"
+    summary: |
+
 
 work:
   - position: "Founder & Lead"
@@ -83,10 +89,10 @@ work:
 skills:
   - name: Technical Skills
     items:
-      - name: Python
+      - name: Microfluidic Design and Assembly
         description: ''
-        percent: 80
-        icon: code-bracket
+        percent: 
+        icon: hero/cog
       - name: Data Science
         description: ''
         percent: 100
@@ -150,4 +156,8 @@ awards:
 
 ## About Me
 
-Chien Shiung Wu is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Alex Johnson is a biochemist dedicated to developing innovative molecular tools inspired by nature, aiming to address today's pressing challenges in conservation and sustainability. Combining disciplined leadership from his service in the U.S. Navy with expertise in structural biology and molecular engineering, Alex thrives on creating practical solutions that minimize environmental impact.
+
+Currently, he is advancing research in microfluidics, creating cell-like compartments designed as environmentally friendly platforms for detecting ecological pollutants.
+
+This past summer, he founded and led Caltech’s DIVE initiative, providing hands-on experience in bioengineering and synthetic biology to veteran students.
