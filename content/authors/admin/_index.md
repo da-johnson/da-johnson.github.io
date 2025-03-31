@@ -67,8 +67,9 @@ work:
   - position: "Founder & Lead"
     company_name: "Caltech DIVE"
     company_url: "https://magazine.caltech.edu/post/dive-diversification-through-veteran-education"
-    date_start: "June 2024"
-    date_end: "September 2024"
+    date_start: "2024-06-01"
+    date_end: "2024-09-01"
+
     summary: |
       Responsibilities include:
       - Organized housing, training, events
