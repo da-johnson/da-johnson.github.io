@@ -48,16 +48,16 @@ interests:
 education:
   - area: "Graduate Researcher"
     institution: "Caltech"
-    date_start: "2021"
-    date_end: "Current"
+    date_start: "2021-09-01"
+    date_end: "2025-03-31"
     summary: |
       - Microfluidics design and manufacturing
       - Genetic cloning of <i>E. coli</i>
       - Microscopy data analysis
   - area: "BSc Biochemistry - Structural Biology"
     institution: "Western Washington University"
-    date_start: "2019"
-    date_end: "2021"
+    date_start: "2019-06-01"
+    date_end: "2021-06-01"
     summary: |
       - Engineered protein expression and purification
       - X-ray crystallography
