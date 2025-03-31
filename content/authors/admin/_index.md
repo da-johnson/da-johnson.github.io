@@ -27,54 +27,54 @@ organizations:
   - name: Caltech
     url: https://www.bbe.caltech.edu/academics/bioengineering
 
-# Social network links
-# Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
-profiles:
-  - icon: at-symbol
-    url: 'mailto:dajohnso@caltech.edu
-    label: E-mail Me
-  - icon: brands/linkedin
-    url: https://www.linkedin.com/in/d-alex-johnson/
-  - icon: academicons/google-scholar
-    url: https://scholar.google.com/citations?hl=en&user=vIXJhJUAAAAJ
-  - icon: academicons/orcid
-    url: https://orcid.org/0000-0001-5675-685X
+email: "dajohnso@caltech.edu"
+social:
+  - icon: "envelope"
+    label: "E-mail Me"
+    url: "mailto:dajohnso@caltech.edu"
+  - icon: "brands/linkedin"
+    url: "https://www.linkedin.com/in/d-alex-johnson/"
+  - icon: "academicons/google-scholar"
+    url: "https://scholar.google.com/citations?hl=en&user=vIXJhJUAAAAJ"
+  - icon: "academicons/orcid"
+    url: "https://orcid.org/0000-0001-5675-685X"
 
 interests:
-  - Applications of Molecular Biology in Conservation and Sustainability
-  - Microfluidic Design
-  - Modular Proteins
-  - Scientific Animation
+  - "Applications of Molecular Biology in Conservation and Sustainability"
+  - "Microfluidic Design"
+  - "Modular Proteins"
+  - "Scientific Animation"
 
 education:
-  - area: Graduate Researcher
-    institution: Caltech
-    date_start: 2021
-    date_end: Current
+  - area: "Graduate Researcher"
+    institution: "Caltech"
+    date_start: "2021"
+    date_end: "Current"
     summary: |
       - Microfluidics design and manufacturing
       - Genetic cloning of <i>E. coli</i>
       - Microscopy data analysis
-  - area: BSc Biochemistry - Structural Biology
-    institution: Western Washington University
-    date_start: 2019
-    date_end: 2021
+  - area: "BSc Biochemistry - Structural Biology"
+    institution: "Western Washington University"
+    date_start: "2019"
+    date_end: "2021"
     summary: |
       - Engineered protein expression and purification
       - X-ray crystallography
       - Collaboration across multiple labs
+
 work:
-  - position: Founder & Lead
-    company_name: Caltech DIVE
-    company_url: https://magazine.caltech.edu/post/dive-diversification-through-veteran-education
-    company_logo: ''
-    date_start: June 2024
-    date_end: September 2024
-    summary: |2-
+  - position: "Founder & Lead"
+    company_name: "Caltech DIVE"
+    company_url: "https://magazine.caltech.edu/post/dive-diversification-through-veteran-education"
+    date_start: "June 2024"
+    date_end: "September 2024"
+    summary: |
       Responsibilities include:
-        - Organized housing, training, events
-        - Industry visits and guest lectures
-        - Led educational sessions
+      - Organized housing, training, events
+      - Industry visits and guest lectures
+      - Led educational sessions
+
 
 
 # Skills
