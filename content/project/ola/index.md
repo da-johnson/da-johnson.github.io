@@ -6,7 +6,7 @@ toc: false
 no_sidebar: true
 ---
 
-# How Microfluidics are Changing Synthetic Biology
+# How Microfluidics are Changing Synthetic Biology
 
 <model-viewer src="1.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1">
     <div class="progress-bar hide" slot="progress-bar">
