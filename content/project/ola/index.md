@@ -20,7 +20,7 @@ sections:
       title: 'model-viewer'
       subtitle: ''
       text: |-
-
+---
 {{<model-viewer src="1.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1">
     <div class="progress-bar hide" slot="progress-bar">
         <div class="update-bar"></div>
@@ -32,4 +32,4 @@ sections:
         <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
     </div>
 </model-viewer>}}
----
+
