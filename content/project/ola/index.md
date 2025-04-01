@@ -5,5 +5,5 @@ type: page
 ---
 
 ## View My 3D Model
-{{< modelviewer src="1.glb" poster="poster.webp" >}}
+{{< modelviewer src="/uploads/1.glb" poster="poster.webp" >}}
 
