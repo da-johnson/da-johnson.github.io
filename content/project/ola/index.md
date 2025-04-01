@@ -6,7 +6,8 @@ toc: false
 no_sidebar: true
 ---
 
-# <!-- Dummy Heading to Fix TOC Error -->
+# <span style="display:none">.</span>
+
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 
 <style>
