@@ -54,3 +54,13 @@ security:
   _merge: deep
 sitemap:
   _merge: deep
+markup:
+  defaultMarkdownHandler: goldmark
+  goldmark:
+    renderer:
+      unsafe: true
+    extensions:
+      table: true
+    renderHooks:
+      link:
+        enableDefault: true
