@@ -6,7 +6,7 @@ toc: false
 no_sidebar: true
 ---
 
-# <span style="display:none">.</span>
+# How Microfluidics are Changing Synthetic Biology
 
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 
@@ -17,8 +17,6 @@ no_sidebar: true
   }
 </style>
 
-<div class="article-container pt-3">
-  <h1>How Microfluidics are Changing Synthetic Biology</h1>
 
   <div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 1080px; max-height: 720px;">
     <div style="position: relative">
