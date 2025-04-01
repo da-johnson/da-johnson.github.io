@@ -1,4 +1,17 @@
-<model-viewer id="animation-demo" autoplay ar ar-modes="webxr" scale="0.1 0.1 0.1" camera-orbit="0deg auto auto" shadow-intensity="1" camera-controls touch-action="pan-y" src="/uploads/20250317.glb" alt="A 3D model of a horse galloping.">
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+<model-viewer id="animation-demo"
+              autoplay
+              ar
+              ar-modes="webxr"
+              scale="0.1 0.1 0.1"
+              camera-orbit="0deg auto auto"
+              shadow-intensity="1"
+              camera-controls
+              touch-action="pan-y"
+              src="/uploads/20250317.glb"
+              alt="A 3D model of a horse galloping.">
+
   <div slot="hotspot-nose" class="anchor" data-surface="3 0 18 8 3 0.008 0.947 0.046"></div>
   <div slot="hotspot-hoof" class="anchor" data-surface="1 3 1726 1725 1758 0.467 0.412 0.122"></div>
   <div slot="hotspot-tail" class="anchor" data-surface="1 1 2045 2055 2046 0.105 0.344 0.551"></div>
@@ -25,40 +38,31 @@
 <script type="module">
   const modelViewer1 = document.querySelector('#animation-demo');
   const lines = modelViewer1.querySelectorAll('line');
-  let baseRect;
-  let noseRect;
-  let hoofRect;
-  let tailRect;
-  let lipidRect;
-  let outerRect;
+  let baseRect, noseRect, hoofRect, tailRect, lipidRect, outerRect;
 
   function onResize() {
-const arStatus = modelViewer1.getAttribute('ar-status');
-baseRect = (arStatus == "not-presenting" || arStatus == "failed") ?
-  modelViewer1.getBoundingClientRect() : new DOMRect();
-noseRect = document.querySelector('#nose').getBoundingClientRect();
-hoofRect = document.querySelector('#hoof').getBoundingClientRect();
-tailRect = document.querySelector('#tail').getBoundingClientRect();
-lipidRect = document.querySelector('#lipid').getBoundingClientRect();  // Corrected to point to #lipid
-outerRect = document.querySelector('#outer').getBoundingClientRect();
-}
+    const arStatus = modelViewer1.getAttribute('ar-status');
+    baseRect = (arStatus === "not-presenting" || arStatus === "failed") ?
+      modelViewer1.getBoundingClientRect() : new DOMRect();
+    noseRect = document.querySelector('#nose').getBoundingClientRect();
+    hoofRect = document.querySelector('#hoof').getBoundingClientRect();
+    tailRect = document.querySelector('#tail').getBoundingClientRect();
+    lipidRect = document.querySelector('#lipid').getBoundingClientRect();
+    outerRect = document.querySelector('#outer').getBoundingClientRect();
+  }
 
   window.addEventListener("resize", onResize);
 
   modelViewer1.addEventListener('ar-status', (event) => {
-    lines.forEach((element) => {
-      if (event.detail.status !== 'session-started') {
-        element.classList.remove('hide');
-      } else {
-        element.classList.add('hide');
-      }
+    lines.forEach((line) => {
+      line.classList.toggle('hide', event.detail.status === 'session-started');
     });
     onResize();
   });
 
   modelViewer1.addEventListener('load', () => {
     onResize();
-    // update svg
+
     function drawLine(svgLine, name, rect) {
       const hotspot = modelViewer1.queryHotspot('hotspot-' + name);
       svgLine.setAttribute('x1', hotspot.canvasPosition.x);
@@ -67,24 +71,25 @@ outerRect = document.querySelector('#outer').getBoundingClientRect();
       svgLine.setAttribute('y2', rect.top - baseRect.top);
     }
 
-   // use requestAnimationFrame to update with renderer
-const startSVGRenderLoop = () => {
-drawLine(lines[0], 'nose', noseRect);
-drawLine(lines[1], 'hoof', hoofRect);
-drawLine(lines[2], 'tail', tailRect);
-drawLine(lines[3], 'lipid', lipidRect);
-drawLine(lines[4], 'outer', outerRect);  // Corrected to 'outer' instead of 'lipid'
-requestAnimationFrame(startSVGRenderLoop);
-};
+    const startSVGRenderLoop = () => {
+      drawLine(lines[0], 'nose', noseRect);
+      drawLine(lines[1], 'hoof', hoofRect);
+      drawLine(lines[2], 'tail', tailRect);
+      drawLine(lines[3], 'lipid', lipidRect);
+      drawLine(lines[4], 'outer', outerRect);
+      requestAnimationFrame(startSVGRenderLoop);
+    };
 
-startSVGRenderLoop();
+    startSVGRenderLoop();
   });
 </script>
+
 <style>
   #animation-demo {
-  width: 100%;       /* This will make it take the full width of its container */
-  height: 50vh;      /* This sets the height to 90% of the viewport height */
-}
+    width: 100%;
+    height: 50vh;
+  }
+
   .anchor {
     display: none;
   }
@@ -97,7 +102,7 @@ startSVGRenderLoop();
   .line {
     stroke: #16a5e6;
     stroke-width: 2;
-    stroke-dasharray: 2
+    stroke-dasharray: 2;
   }
 
   #container {
@@ -130,8 +135,7 @@ startSVGRenderLoop();
     bottom: 64px;
   }
 
-  /* This keeps child nodes hidden while the element loads */
-  :not(:defined)>* {
+  :not(:defined) > * {
     display: none;
   }
 </style>
