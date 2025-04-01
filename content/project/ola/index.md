@@ -1,12 +1,11 @@
 ---
-title: Pandas
-date: 2023-10-26
-tags:
-  - Hugo
-  - Wowchemy
-  - Markdown
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+title: "Octanol Assisted Liposome Assembly"
+date: 2016-04-27
+toc: false
+type: project
 ---
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
 <div class="article-container pt-3">
     <h1>How Microfluidics are Changing Synthetic Biology</h1>
   
