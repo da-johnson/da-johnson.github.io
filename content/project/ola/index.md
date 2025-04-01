@@ -16,57 +16,140 @@ no_sidebar: true
     height: 60vh;
   }
 </style>
+<model-viewer id="animation-demo" autoplay ar ar-modes="webxr" scale="0.1 0.1 0.1" camera-orbit="0deg auto auto" shadow-intensity="1" camera-controls touch-action="pan-y" src="20250317.glb" alt="A 3D model of a horse galloping.">
+    <div slot="hotspot-nose" class="anchor" data-surface="3 0 18 8 3 0.008 0.947 0.046"></div>
+    <div slot="hotspot-hoof" class="anchor" data-surface="1 3 1726 1725 1758 0.467 0.412 0.122"></div>
+    <div slot="hotspot-tail" class="anchor" data-surface="1 1 2045 2055 2046 0.105 0.344 0.551"></div>
+    <div slot="hotspot-lipid" class="anchor" data-surface="1 0 1870 1834 1869 0.287 0.514 0.198"></div>
+    <div slot="hotspot-outer" class="anchor" data-surface="1 2 2485 2486 2451 0.009 0.625 0.365"></div>
 
+    <svg id="lines" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" class="lineContainer">
+      <line class="line"></line>
+      <line class="line"></line>
+      <line class="line"></line>
+      <line class="line"></line>
+      <line class="line"></line>
+    </svg>
 
-  <div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 1080px; max-height: 720px;">
-    <div style="position: relative">
-      <img src="20250314.png" width="720" height="405" alt="" class="featured-image">
-      <span class="article-header-caption">Model Render via Blender</span>
+    <div id="container">
+      <button id="hoof" class="label">Outlet for Formed Vesicles</button>
+      <button id="nose" class="label">Vesicle in Formation</button>
+      <button id="tail" class="label">Inner Solution</button>
+      <button id="lipid" class="label">Lipid in Oil</button>
+      <button id="outer" class="label">Outer Solution</button>
     </div>
-  </div>
+  </model-viewer>
 
-  <div class="article-container">
-    <div class="article-style">
-      <p>I first became interested in lipid membranes during my early undergraduate studies of protein structure. One can only avoid exploring membranes for so long as a structural biologist, given the many membrane-associated proteins nature has provided...</p>
+  <script type="module">
+    const modelViewer1 = document.querySelector('#animation-demo');
+    const lines = modelViewer1.querySelectorAll('line');
+    let baseRect;
+    let noseRect;
+    let hoofRect;
+    let tailRect;
+    let lipidRect;
+    let outerRect;
 
-      <p>For the purposes of my project, I was interested an additional capability afforded by membranes, that as the anchor phase for surface display proteins...</p>
+    function onResize() {
+  const arStatus = modelViewer1.getAttribute('ar-status');
+  baseRect = (arStatus == "not-presenting" || arStatus == "failed") ?
+    modelViewer1.getBoundingClientRect() : new DOMRect();
+  noseRect = document.querySelector('#nose').getBoundingClientRect();
+  hoofRect = document.querySelector('#hoof').getBoundingClientRect();
+  tailRect = document.querySelector('#tail').getBoundingClientRect();
+  lipidRect = document.querySelector('#lipid').getBoundingClientRect();  // Corrected to point to #lipid
+  outerRect = document.querySelector('#outer').getBoundingClientRect();
+  }
 
-      <p>Giant unilamellar vesicles (GUVs) resemble the cell membrane of natural cells, particularly the lipid components...</p>
-      
-      <p>Several methods are employed to produce GUVs:</p>
-      <ul>
-        <li><strong>Thin Film Hydration and Extrusion:</strong> This method involves drying lipids...</li>
-        <li><strong>Inverted Emulsion:</strong> In this method, lipids are mixed with a carrier oil...</li>
-        <li><strong>Microfluidic Production of GUVs:</strong> Microfluidics involve devices with micron-scale liquid channels...</li>
-      </ul>
-    </div>
+    window.addEventListener("resize", onResize);
 
-    <model-viewer 
-      id="animation-demo" 
-      autoplay 
-      ar 
-      ar-modes="webxr" 
-      scale="0.1 0.1 0.1"
-      camera-orbit="0deg auto auto" 
-      shadow-intensity="1" 
-      camera-controls 
-      touch-action="pan-y"
-      src="20250317.glb" 
-      alt="3D Microfluidic Model">
-    </model-viewer>
+    modelViewer1.addEventListener('ar-status', (event) => {
+      lines.forEach((element) => {
+        if (event.detail.status !== 'session-started') {
+          element.classList.remove('hide');
+        } else {
+          element.classList.add('hide');
+        }
+      });
+      onResize();
+    });
 
-    <video width="100%" height="auto" controls autoplay loop muted playsinline>
-      <source src="20250317.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+    modelViewer1.addEventListener('load', () => {
+      onResize();
+      // update svg
+      function drawLine(svgLine, name, rect) {
+        const hotspot = modelViewer1.queryHotspot('hotspot-' + name);
+        svgLine.setAttribute('x1', hotspot.canvasPosition.x);
+        svgLine.setAttribute('y1', hotspot.canvasPosition.y);
+        svgLine.setAttribute('x2', (rect.left + rect.right) / 2 - baseRect.left);
+        svgLine.setAttribute('y2', rect.top - baseRect.top);
+      }
 
-    <video width="100%" height="auto" controls autoplay loop muted playsinline>
-      <source src="emulsion.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+     // use requestAnimationFrame to update with renderer
+const startSVGRenderLoop = () => {
+  drawLine(lines[0], 'nose', noseRect);
+  drawLine(lines[1], 'hoof', hoofRect);
+  drawLine(lines[2], 'tail', tailRect);
+  drawLine(lines[3], 'lipid', lipidRect);
+  drawLine(lines[4], 'outer', outerRect);  // Corrected to 'outer' instead of 'lipid'
+  requestAnimationFrame(startSVGRenderLoop);
+};
 
-    <div class="article-tags">
-      <a class="badge badge-light" href="/tag/deep-learning/">Deep Learning</a>
-    </div>
-  </div>
-</div>
+startSVGRenderLoop();
+    });
+  </script>
+  <style>
+    #animation-demo {
+    width: 100%;       /* This will make it take the full width of its container */
+    height: 50vh;      /* This sets the height to 90% of the viewport height */
+  }
+    .anchor {
+      display: none;
+    }
+
+    .lineContainer {
+      pointer-events: none;
+      display: block;
+    }
+
+    .line {
+      stroke: #16a5e6;
+      stroke-width: 2;
+      stroke-dasharray: 2
+    }
+
+    #container {
+      position: absolute;
+      display: flex;
+      justify-content: space-evenly;
+      bottom: 8px;
+      left: 8px;
+      width: 100%;
+    }
+
+    .label {
+      background: #fff;
+      border-radius: 4px;
+      border: none;
+      box-sizing: border-box;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+      color: rgba(0, 0, 0, 0.8);
+      display: block;
+      font-family: Futura, Helvetica Neue, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      max-width: 100px;
+      padding: 0.5em 1em;
+      bottom: 10px;
+      pointer-events: none;
+    }
+
+    #animation-demo::part(default-ar-button) {
+      bottom: 64px;
+    }
+
+    /* This keeps child nodes hidden while the element loads */
+    :not(:defined)>* {
+      display: none;
+    }
+  </style>
