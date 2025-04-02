@@ -66,9 +66,4 @@ markup:
         enableDefault: true
   highlight:
     lineNos: false
-seo:
-  site_type: Person
-  open_graph: true
-  twitter_cards: true
-  description: "Synthetic biology meets sustainability. Personal site of Alex Johnson, focused on membrane proteins, cell-free systems, and ecological bioengineering."
-  org_name: "Alex Johnson"
+
