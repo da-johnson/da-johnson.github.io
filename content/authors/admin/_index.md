@@ -119,7 +119,7 @@ skills:
       - name: Sea Kayaking
         description: ''
         percent: 
-        icon: kayak-svgrepo-com.svg
+        icon: kayak-svgrepo-com
       - name: Photography
         description: ''
         percent:
