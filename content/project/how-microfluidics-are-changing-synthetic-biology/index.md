@@ -7,7 +7,7 @@ slug: "how-microfluidics-are-changing-synthetic-biology"
 tags: ["synthetic biology", "GUVs", "microfluidics", "biosensors"]
 categories: ["Research", "Biotechnology"]
 keywords: ["synthetic cells", "lipid vesicles", "membrane proteins", "lab automation"]
-cover: "/uploads/20250314.png"
+cover: "/uploads/demo.png"
 type: page
 seo:
   title: "How Microfluidics Are Changing Synthetic Biology"
