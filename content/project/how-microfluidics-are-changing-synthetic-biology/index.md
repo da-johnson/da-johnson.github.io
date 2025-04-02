@@ -9,6 +9,9 @@ categories: ["Research", "Biotechnology"]
 keywords: ["synthetic cells", "lipid vesicles", "membrane proteins", "lab automation"]
 cover: "/uploads/20250314.png"
 type: page
+seo:
+  title: "How Microfluidics Are Changing Synthetic Biology"
+  description: "An exploration of synthetic biology, membrane proteins, and how microfluidics is reshaping the way we build synthetic cells."
 ---
 
 ## What is Synthetic Biology?
