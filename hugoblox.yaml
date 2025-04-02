@@ -1,2 +1,4 @@
 build:
   hugo_version: '0.136.5'
+seo:
+  open_graph: true
