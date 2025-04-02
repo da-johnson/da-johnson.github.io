@@ -1,17 +1,10 @@
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
 <div id="viewer-wrapper" style="position: relative; width: 100%; height: 50vh;">
-  <model-viewer id="animation-demo"
-                autoplay
-                ar
-                ar-modes="webxr"
-                scale="0.1 0.1 0.1"
-                camera-orbit="0deg auto auto"
-                shadow-intensity="1"
-                camera-controls
-                touch-action="pan-y"
-                src="/uploads/20250317.glb"
-                alt="A 3D model of a horse galloping.">
+  <model-viewer id="animation-demo" autoplay ar ar-modes="webxr"
+                scale="0.1 0.1 0.1" camera-orbit="0deg auto auto"
+                shadow-intensity="1" camera-controls touch-action="pan-y"
+                src="20250317.glb" alt="A 3D model of a horse galloping.">
 
     <div slot="hotspot-nose" class="anchor" data-surface="3 0 18 8 3 0.008 0.947 0.046"></div>
     <div slot="hotspot-hoof" class="anchor" data-surface="1 3 1726 1725 1758 0.467 0.412 0.122"></div>
@@ -21,7 +14,7 @@
   </model-viewer>
 
   <svg id="lines" xmlns="http://www.w3.org/2000/svg"
-       class="lineContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none;">
+       class="lineContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;">
     <line class="line"></line>
     <line class="line"></line>
     <line class="line"></line>
@@ -30,13 +23,61 @@
   </svg>
 
   <div id="container" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 3; display: flex; justify-content: space-evenly; padding-top: 10px;">
-    <button id="nose" class="label">Vesicle in Formation</button>
     <button id="hoof" class="label">Outlet for Formed Vesicles</button>
+    <button id="nose" class="label">Vesicle in Formation</button>
     <button id="tail" class="label">Inner Solution</button>
     <button id="lipid" class="label">Lipid in Oil</button>
     <button id="outer" class="label">Outer Solution</button>
   </div>
 </div>
+
+<script type="module">
+  const modelViewer1 = document.querySelector('#animation-demo');
+  const lines = document.querySelectorAll('line');
+  let baseRect, noseRect, hoofRect, tailRect, lipidRect, outerRect;
+
+  function onResize() {
+    const wrapperRect = document.querySelector('#viewer-wrapper').getBoundingClientRect();
+    const arStatus = modelViewer1.getAttribute('ar-status');
+    baseRect = (arStatus === "not-presenting" || arStatus === "failed") ? wrapperRect : new DOMRect();
+
+    noseRect = document.querySelector('#nose').getBoundingClientRect();
+    hoofRect = document.querySelector('#hoof').getBoundingClientRect();
+    tailRect = document.querySelector('#tail').getBoundingClientRect();
+    lipidRect = document.querySelector('#lipid').getBoundingClientRect();
+    outerRect = document.querySelector('#outer').getBoundingClientRect();
+  }
+
+  function drawLine(svgLine, name, rect) {
+    const hotspot = modelViewer1.queryHotspot('hotspot-' + name);
+    if (!hotspot || !hotspot.canvasPosition) return;
+    svgLine.setAttribute('x1', hotspot.canvasPosition.x);
+    svgLine.setAttribute('y1', hotspot.canvasPosition.y);
+    svgLine.setAttribute('x2', (rect.left + rect.right) / 2 - baseRect.left);
+    svgLine.setAttribute('y2', (rect.top + rect.bottom) / 2 - baseRect.top);
+  }
+
+  window.addEventListener("resize", onResize);
+
+  modelViewer1.addEventListener('ar-status', () => {
+    onResize();
+  });
+
+  modelViewer1.addEventListener('load', () => {
+    onResize();
+
+    const startLoop = () => {
+      drawLine(lines[0], 'nose', noseRect);
+      drawLine(lines[1], 'hoof', hoofRect);
+      drawLine(lines[2], 'tail', tailRect);
+      drawLine(lines[3], 'lipid', lipidRect);
+      drawLine(lines[4], 'outer', outerRect);
+      requestAnimationFrame(startLoop);
+    };
+
+    startLoop();
+  });
+</script>
 
 <style>
   model-viewer {
@@ -66,51 +107,8 @@
     padding: 0.5em 1em;
     pointer-events: none;
   }
+
+  :not(:defined) > * {
+    display: none;
+  }
 </style>
-
-<script type="module">
-  const modelViewer1 = document.querySelector('#animation-demo');
-  const lines = document.querySelectorAll('line');
-  let baseRect, noseRect, hoofRect, tailRect, lipidRect, outerRect;
-
-  function onResize() {
-    const wrapperRect = document.querySelector('#viewer-wrapper').getBoundingClientRect();
-    const arStatus = modelViewer1.getAttribute('ar-status');
-    baseRect = (arStatus === "not-presenting" || arStatus === "failed") ? wrapperRect : new DOMRect();
-
-    noseRect = document.querySelector('#nose').getBoundingClientRect();
-    hoofRect = document.querySelector('#hoof').getBoundingClientRect();
-    tailRect = document.querySelector('#tail').getBoundingClientRect();
-    lipidRect = document.querySelector('#lipid').getBoundingClientRect();
-    outerRect = document.querySelector('#outer').getBoundingClientRect();
-  }
-
-  function drawLine(svgLine, name, rect) {
-    const hotspot = modelViewer1.queryHotspot('hotspot-' + name);
-    if (!hotspot || !hotspot.canvasPosition) return;
-
-    svgLine.setAttribute('x1', hotspot.canvasPosition.x);
-    svgLine.setAttribute('y1', hotspot.canvasPosition.y);
-    svgLine.setAttribute('x2', (rect.left + rect.right) / 2 - baseRect.left);
-    svgLine.setAttribute('y2', (rect.top + rect.bottom) / 2 - baseRect.top);
-  }
-
-  window.addEventListener("resize", onResize);
-
-  modelViewer1.addEventListener('ar-status', () => onResize());
-
-  modelViewer1.addEventListener('load', () => {
-    onResize();
-
-    const render = () => {
-      drawLine(lines[0], 'nose', noseRect);
-      drawLine(lines[1], 'hoof', hoofRect);
-      drawLine(lines[2], 'tail', tailRect);
-      drawLine(lines[3], 'lipid', lipidRect);
-      drawLine(lines[4], 'outer', outerRect);
-      requestAnimationFrame(render);
-    };
-
-    render();
-  });
-</script>
