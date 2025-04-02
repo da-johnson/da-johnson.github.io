@@ -21,5 +21,5 @@ Several methods are employed to produce GUVs, each with its own advantages and l
   Microfluidics involve devices with micron-scale liquid channels and are used in various research settings due to their low volume requirements, reducing both risk and cost. In the context of GUVs, microfluidic systems typically have three inputs and one output to mix the inner solution, lipid-in-oil, and outer solution precisely, facilitating the assembly of GUVs. Below, the operation of such chips and the detailed assembly process are further explored.
 
 ## View My 3D Model
-{{< partial "modelviewer.html" . >}}
+{{< modelviewer >}}
 {{< OLA-video >}}
