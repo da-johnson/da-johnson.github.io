@@ -3,7 +3,7 @@
 title: Alex Johnson
 
 # Name pronunciation (optional)
-name_pronunciation: Alex
+name_pronunciation: 
 
 # Full name (for SEO)
 first_name: Alex
@@ -119,7 +119,7 @@ skills:
       - name: Sea Kayaking
         description: ''
         percent: 
-        icon: assets/media/icons/kayak-svgrepo-com
+        icon: assets/media/kayak-svgrepo-com.svg
       - name: Photography
         description: ''
         percent:

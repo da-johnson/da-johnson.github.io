@@ -13,9 +13,9 @@ marketing:
   seo:
     site_type: Person
     local_business_type: ''
-    org_name: ''
-    description: 'The highly-customizable Hugo Academic theme powered by Hugo Blox Builder. Easily create your personal academic website.'
-    twitter: 'GetResearchDev'
+    org_name: 'Alex Johnson'
+    description: 'Synthetic biology meets sustainability. Personal site of Alex Johnson, focused on membrane proteins, cell-free systems, and ecological bioengineering.'
+    twitter: ''
   analytics:
     google_analytics: ''
     baidu_tongji: ''
@@ -58,3 +58,7 @@ features:
     enable: false
   privacy_pack:
     enable: false
+
+params:
+  favicon: "/uploads/favicon.png"  # or favicon.ico
+
